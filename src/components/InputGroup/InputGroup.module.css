@@ -30,6 +30,14 @@
     cursor: pointer;
 }
 
+.container button:hover{
+    background-color: rgba(183, 66, 255, 0.7);
+}
+
+.container button:active {
+    transform: scale(0.8);
+  }
+
 .lightMode{
     background-color: #fff;
 }

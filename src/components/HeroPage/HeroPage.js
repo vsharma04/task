@@ -4,12 +4,14 @@ import InputGroup from '../InputGroup/InputGroup'
 import Suggestions from '../Suggestions/Suggestions'
 import axios from 'axios'
 
-const HeroPage = ({toggle}) => {
+const HeroPage = ({ toggle }) => {
 
   const [domain, setDomain] = useState('');
   const [results, setResults] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const checkDomainAvailability = async () => {
+    setLoader(true)
     const extensions = ['.com', '.in', '.io'];
     const results = [];
 
@@ -28,18 +30,20 @@ const HeroPage = ({toggle}) => {
     }
 
     setResults(results);
+    setLoader(false)
   };
-  
+
 
   return (
     <div className={style.container}>
       <InputGroup
-      setDomain={setDomain}
-      toggle={toggle}
-      checkDomainAvailability={checkDomainAvailability} />
-      <Suggestions 
-      results={results}
-       toggle={toggle} />
+        setDomain={setDomain}
+        toggle={toggle}
+        checkDomainAvailability={checkDomainAvailability}
+        loader={loader} />
+      <Suggestions
+        results={results}
+        toggle={toggle} />
     </div>
   )
 }
